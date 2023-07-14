@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plant Watering App</title>
+</head>
+<body>
+  <h1>Plant Watering App</h1>
+  
+  <form>
+    <label for="plantName">Enter Plant Name:</label>
+    <input type="text" id="plantName" name="plantName">
+    <button type="button" onclick="submitPlant()">Submit</button>
+  </form>
+
+  <script>
+    function submitPlant() {
+      var plantNameInput = document.getElementById("plantName").value;
+      // You can perform further processing or send the plant name to the server for further handling
+      console.log("Submitted plant name: " + plantNameInput);
+    }
+  </script>
+</body>
+</html>
