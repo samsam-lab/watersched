@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plant Watering App</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: "Helvetica", Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Plant Watering App</h1>
+  
+  <form>
+    <label for="plantName">Enter Plant Name:</label>
+    <input type="text" id="plantName" name="plantName">
+    <button type="button" onclick="searchPlant()">Search</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function searchPlant() {
+      var plantNameInput = document.getElementById("plantName").value;
+      var apiKey = "3WtATJQS42JzYPE0mKhqYCobZCFbzZ6niAr0Kl6nZf8"; // Replace with your Trefle API key
+
+      // Make an API request
+      axios.get(`https://trefle.io/api/v1/plants/search?token=${apiKey}&q=${plantNameInput}`)
+        .then(function(response) {
+          // Process the API response and extract watering information
+          var wateringFrequency = response.data.data[0].watering_interval;
+          displayResult(wateringFrequency);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+
+    function displayResult(wateringFrequency) {
+      var resultContainer = document.getElementById("result");
+      resultContainer.textContent = `Water this plant approximately every ${wateringFrequency} days.`;
+    }
+  </script>
+</body>
+</html>
